@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  --shadow-panel: 0 16px 48px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+:root {
+  color-scheme: dark;
+  font-family: "Aptos", "Segoe UI", system-ui, sans-serif;
+  background: #080b12;
+  color: #e2e8f0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: #080b12;
+  /* Smooth scrolling for anchor navigation */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* Prevent layout shift from scrollbar */
+html {
+  scrollbar-gutter: stable;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Better focus styles for keyboard users */
+:focus-visible {
+  outline: 2px solid rgba(34, 211, 238, 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.28);
+}
+
+/* Recharts: reset letter-spacing that fights tracking utilities */
+.recharts-wrapper text {
+  letter-spacing: 0;
+}
+
+/* Touch target minimum for mobile */
+@media (pointer: coarse) {
+  button,
+  select,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ── Print styles ──────────────────────────────────────────────────────────── */
+@media print {
+  :root {
+    font-size: 11px;
+    color-scheme: light;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #111827 !important;
+  }
+
+  #app-shell {
+    background: #fff !important;
+    color: #111827 !important;
+  }
+
+  /* Remove sidebar and header in print */
+  aside,
+  header {
+    display: none !important;
+  }
+
+  main {
+    margin-left: 0 !important;
+    padding: 12px !important;
+  }
+
+  /* Remove glassmorphism effects */
+  [class*="backdrop-blur"],
+  [class*="bg-white/"],
+  [class*="bg-slate-950"] {
+    backdrop-filter: none !important;
+    background-color: #f9fafb !important;
+  }
+
+  /* Recharts: make charts print-visible */
+  .recharts-cartesian-grid-horizontal line,
+  .recharts-cartesian-grid-vertical line {
+    stroke: #d1d5db !important;
+  }
+
+  .recharts-text,
+  .recharts-legend-item-text {
+    fill: #374151 !important;
+    color: #374151 !important;
+  }
+
+  /* Ensure cards have visible borders in print */
+  [class*="border-white"] {
+    border-color: #e5e7eb !important;
+  }
+
+  /* Page breaks */
+  .page-break-before {
+    break-before: page;
+  }
+
+  /* Don't break cards across pages if avoidable */
+  [class*="rounded-"] {
+    break-inside: avoid;
+  }
+}
+
+/* ── Reduced motion ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
